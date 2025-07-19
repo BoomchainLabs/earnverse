@@ -1,0 +1,34 @@
+name: Build & Test – Sanity Studio
+
+on:
+  push:
+    branches: [main]  # or your deploy branch
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build Sanity Studio
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Sanity Studio
+        run: npm run build
+
+      - name: Upload Dist Folder (Optional Artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanity-dist
+          path: dist
