@@ -1,0 +1,6 @@
+name = "earnverse-studio"
+type = "webpack"
+account_id = "632b14c79415658fe6d03f46ff87e53f"
+zone_id = "a186178d6c910893a64ae8fe7dd4fa54"
+route = "studio.boomchainlab.com/*"
+compatibility_date = "2025-07-19"
