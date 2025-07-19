@@ -1,0 +1,25 @@
+{
+  "name": "earnverse-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sanity Studio for Earnverse — tokenized rewards and trivia platform",
+  "scripts": {
+    "dev": "sanity start",
+    "build": "sanity build",
+    "deploy": "wrangler publish"
+  },
+  "author": "BoomchainLabs",
+  "license": "MIT",
+  "dependencies": {
+    "sanity": "^3.12.0",
+    "@sanity/base": "^3.12.0",
+    "@sanity/components": "^3.12.0",
+    "@sanity/core": "^3.12.0",
+    "@sanity/desk-tool": "^3.12.0",
+    "@sanity/default-layout": "^3.12.0",
+    "@sanity/default-login": "^3.12.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
