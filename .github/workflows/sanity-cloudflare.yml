@@ -1,34 +1,33 @@
-name: Build & Test – Sanity Studio
+name: Deploy Sanity Studio to Cloudflare
 
 on:
   push:
-    branches: [main]  # or your deploy branch
-  pull_request:
     branches: [main]
 
 jobs:
-  build:
-    name: Build Sanity Studio
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
+          node-version: 20
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
       - name: Build Sanity Studio
         run: npm run build
 
-      - name: Upload Dist Folder (Optional Artifact)
-        uses: actions/upload-artifact@v4
-        with:
-          name: sanity-dist
-          path: dist
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Publish to Cloudflare Pages
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          wrangler pages publish ./dist --project-name=earnverse-studio
